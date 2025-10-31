@@ -8,7 +8,7 @@ interface MenuBarProps {
 }
 
 const MenuBar: React.FC<MenuBarProps> = ({ onToggleNotifications }) => {
-    const { openWindow, notifications, markNotificationsAsRead, setSearchOpen } = useAppContext();
+    const { openWindow, notifications, markNotificationsAsRead, setSearchOpen, incrementMenuBarClickCount } = useAppContext();
     const hasUnread = notifications.some(n => !n.read);
 
     const handleBellClick = () => {
@@ -19,7 +19,10 @@ const MenuBar: React.FC<MenuBarProps> = ({ onToggleNotifications }) => {
     return (
         <header className="fixed top-4 left-1/2 -translate-x-1/2 z-[1000] bg-stone-200/50 dark:bg-stone-800/50 backdrop-blur-lg border border-stone-300/50 dark:border-stone-700/50 flex items-center justify-between px-3 py-1.5 rounded-full shadow-lg select-none gap-4">
             <button
-                onClick={() => openWindow('about')}
+                onClick={() => {
+                    openWindow('about');
+                    incrementMenuBarClickCount(); // Easter egg: Increment count when name is clicked
+                }}
                 className="flex items-center gap-2 text-sm font-bold text-stone-800 dark:text-stone-200 hover:bg-black/10 dark:hover:bg-white/10 px-2 py-1 rounded-full transition-colors"
                 aria-label="About Tanmay Kalbande"
             >
@@ -29,17 +32,24 @@ const MenuBar: React.FC<MenuBarProps> = ({ onToggleNotifications }) => {
             
             <div className="w-px h-5 bg-stone-300 dark:bg-stone-700"></div>
 
-            <div className="flex items-center gap-2">
-                <button onClick={() => setSearchOpen(true)} className="text-stone-800 dark:text-stone-200 hover:bg-black/10 dark:hover:bg-white/10 p-2 rounded-full transition-colors" aria-label="Open search (Cmd+K)">
-                    <Search size={16} />
-                </button>
-                <button onClick={handleBellClick} className="relative text-stone-800 dark:text-stone-200 hover:bg-black/10 dark:hover:bg-white/10 p-2 rounded-full transition-colors" aria-label="Open notifications">
-                    <Bell size={16} />
-                    {hasUnread && (
-                        <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-500 border border-stone-200 dark:border-stone-800"></div>
-                    )}
-                </button>
-                <div className="hidden sm:block">
+            <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                    <button onClick={() => setSearchOpen(true)} className="text-stone-800 dark:text-stone-200 hover:bg-black/10 dark:hover:bg-white/10 p-2 rounded-full transition-colors" aria-label="Open search (Cmd+K)">
+                        <Search size={16} />
+                    </button>
+                    <button onClick={handleBellClick} className="relative text-stone-800 dark:text-stone-200 hover:bg-black/10 dark:hover:bg-white/10 p-2 rounded-full transition-colors" aria-label="Open notifications">
+                        <Bell size={16} />
+                        {hasUnread && (
+                            <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-500 border border-stone-200 dark:border-stone-800"></div>
+                        )}
+                    </button>
+                </div>
+                
+                <div className="hidden sm:flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 text-sm font-medium text-stone-800 dark:text-stone-200">
+                        <img src="https://www.free-visitor-counter.net/api?id=b4x4j4n&page=tanmay.portfolio.os" alt="Visitor Counter" title="Visitor Counter" />
+                    </div>
+                    <div className="w-px h-5 bg-stone-300 dark:bg-stone-700"></div>
                     <Clock />
                 </div>
             </div>
