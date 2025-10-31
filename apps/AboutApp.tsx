@@ -54,13 +54,13 @@ const AboutApp: React.FC = () => {
                 <div className="flex flex-wrap">
                     {portfolioData.skills.map(skill => <Tag key={skill}>{skill}</Tag>)}
                 </div>
-            </section>
+            </Section>
 
             <Section title="Interests" icon={<Lightbulb className="text-amber-500" />}>
                  <div className="flex flex-wrap">
                     {portfolioData.interests.map(interest => <Tag key={interest}>{interest}</Tag>)}
                 </div>
-            </section>
+            </Section>
             
             <Section title="Certifications" icon={<Award className="text-amber-500" />}>
                 <ul className="list-disc list-inside space-y-1 text-sm">
