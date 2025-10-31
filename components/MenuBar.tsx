@@ -47,7 +47,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ onToggleNotifications }) => {
                 
                 <div className="hidden sm:flex items-center gap-2">
                     <div className="flex items-center gap-1.5 text-sm font-medium text-stone-800 dark:text-stone-200">
-                        <img src="https://www.free-visitor-counter.net/api?id=b4x4j4n&page=tanmay.portfolio.os" alt="Visitor Counter" title="Visitor Counter" />
+                        <img src="https://visitor-badge.glitch.me/badge?page_id=tanmay.kalbande.portfolio.os" alt="Visitor Counter" title="Visitor Counter" />
                     </div>
                     <div className="w-px h-5 bg-stone-300 dark:bg-stone-700"></div>
                     <Clock />
